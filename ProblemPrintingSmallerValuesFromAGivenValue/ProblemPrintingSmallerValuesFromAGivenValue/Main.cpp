@@ -1,4 +1,4 @@
-
+/*
 #include "MainHeader.h"
 
 int main() {
@@ -22,7 +22,7 @@ int main() {
 
 
 	for (int i = 0; i < num_of_files; i++) {
-		filename[i] = new char[50];
+		filename[i] = new char[128];
 		// Getting the name of the file and make a person arr
 		cout << endl << "File no." << i + 1 << ":"; // get name of file
 		if (i == 0) {
@@ -61,3 +61,4 @@ int main() {
 	}
 
 }
+*/

@@ -13,7 +13,6 @@ public:
 
 	BSTreeNode* Find(int key);
 	void Insert(int key, Person item);
-	Person SelectionBST(int klowest);
 	void Delete(int id);
 	BSTreeNode* FindMaxInRoot(BSTreeNode* node);
 	Person Min(void);
@@ -23,7 +22,8 @@ public:
 	void PrintTree(void);
 	int GetNumCopm();
 	void SwapClass(BSTreeNode& p1, BSTreeNode& p2);
-private:
+	void printLowerThanK(int i_K);
+	void printLowerThanK(BSTreeNode* i_Node,int i_K);
 };
 
 #endif // !_BSTREE_H

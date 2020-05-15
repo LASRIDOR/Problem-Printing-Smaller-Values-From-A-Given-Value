@@ -17,11 +17,8 @@ int main() {
 	CopyPersons(testRandSelection, testBST, size);
 	CopyPersons(testHeap, testBST, size);
 	//checking BST
-	NumComp = 0;
-	kperson = BST(testBST, size, k, &NumComp);
-	cout << "BST:" << endl;
-	kperson.PrintPerson();
-	cout << "NumComp:" << NumComp << endl << endl;
+	NumComp = BSTPrint(testBST, size, k);
+	cout << "BSTPrint:" << NumComp << " comparisons" << endl << endl;
 	//checking Randselection
 	NumComp = 0;
 	kperson = RandSelection(testRandSelection, size, k, &NumComp);

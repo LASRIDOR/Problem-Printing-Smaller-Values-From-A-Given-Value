@@ -4,7 +4,6 @@ BSTreeNode::BSTreeNode() {
     this->key = 0;
 	this->left = nullptr;
 	this->right = nullptr;
-    this->lcounter = 0;
 }
 
 //------------------------------------------------------------------------------------------------------------
@@ -13,19 +12,12 @@ BSTreeNode::BSTreeNode(int key,const Person& data, BSTreeNode* left, BSTreeNode*
     this->key = key;
 	this->left = left;
 	this->right = right;
-    if (left) {
-        this->lcounter += left->lcounter +1;
-    }
-    else {
-        this->lcounter = 0;
-    }
 }
 
 //------------------------------------------------------------------------------------------------------------
 
 BSTreeNode::BSTreeNode(const BSTreeNode& other) {
     key = other.key;
-    lcounter = other.lcounter;
     this->data = other.data;
     this->left = other.left;
     this->right = other.right;
@@ -46,18 +38,6 @@ BSTreeNode::~BSTreeNode() {
 
 int BSTreeNode::GetKey() {
     return this->key;
-}
-
-//-----------------------------------------------------------------------------------
-
-int BSTreeNode::GetLcounter() {
-    return this->lcounter;
-}
-
-//-----------------------------------------------------------------------------------
-
-void BSTreeNode::IncreaseLcounterByOne() {
-    lcounter++;
 }
 
 //-----------------------------------------------------------------------------------

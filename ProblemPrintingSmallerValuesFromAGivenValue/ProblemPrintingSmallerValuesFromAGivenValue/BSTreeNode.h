@@ -10,7 +10,6 @@ class BSTreeNode {
 private:
 	int key; // key is the id of the person i call it key just for tree concepts
 	Person data;
-	int lcounter; // include himself
 	BSTreeNode* left, * right;
 public:
 	BSTreeNode();
@@ -18,8 +17,6 @@ public:
 	BSTreeNode(const BSTreeNode& other);
 	~BSTreeNode();
 	int GetKey();
-	int GetLcounter();
-	void IncreaseLcounterByOne();
 	void inorder();
 	void preorder();
 	void postorder();

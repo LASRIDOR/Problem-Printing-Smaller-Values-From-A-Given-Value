@@ -152,7 +152,7 @@ Person* MakeArrFromFile(char* filename,int* k,int* size) {
 Person* MakeArrofPersons(int* k, int* size) {
 	Person* arr;
 	int temp_id;
-	char temp_name[80];
+	char temp_name[128];
 	cin >> *size;
 
 	arr = new Person[*size];
@@ -187,6 +187,17 @@ void CopyPersons(Person* destination, Person* source,int size) {
 	for (int i = 0; i < size; i++) {
 		destination[i] = source[i];
 	}
+}
+
+// -----------------------------------------------------------------------------------------------------------
+
+int BSTPrint(Person* arr, int n, int k) {
+	BSTree tree;
+	for (int i = 0; i < n; i++) {
+		tree.Insert(arr[i].GetId(), arr[i]);
+	}
+	tree.printLowerThanK(k);
+	return tree.GetNumCopm();
 }
 
 // -----------------------------------------------------------------------------------------------------------

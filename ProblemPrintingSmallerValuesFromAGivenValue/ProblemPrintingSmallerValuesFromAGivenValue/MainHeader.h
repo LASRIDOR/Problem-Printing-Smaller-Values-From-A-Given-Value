@@ -7,7 +7,6 @@
 #include <fstream>
 #include <stdio.h>
 #include "Person.h"
-#include "Heap.h"
 #include "BSTree.h"
 using namespace std;
 
@@ -23,7 +22,7 @@ Person* MakeArrFromFile(char* filename,int* k,int* size);
 void CopyPersons(Person* destination,Person* source,int size);
 void CheckValidInput(Person* arr,int size);
 
-// Rand Selection 
+// Rand Selection
 // Runtime Complications: Θ(n)
 
 Person RandSelection(Person* arr, int n, int k, int* NumComp);
@@ -46,6 +45,6 @@ Person selectHeap(Person* arr, int n, int k, int* NumComp);
 // Runtime Complications: Θ(nlogn) for n time insert Θ(logn)(height of the tree) key to the tree  + Θ(logn) for find k with algorithem of selection findk
 // = Θ(nlogn)
 
-Person BST(Person* arr, int n, int k, int* NumComp);
+int BSTPrint(Person* arr, int n, int k);
 
 #endif // !_MainHeader_H

@@ -50,7 +50,6 @@ void BSTree::Insert(int key,Person item) {
 		parent = temp;
 		if (key < temp->key) {
 			temp = temp->left;
-			parent->IncreaseLcounterByOne();
 			NumComp++;
 		}
 		else {
@@ -58,7 +57,7 @@ void BSTree::Insert(int key,Person item) {
 			NumComp++;
 		}
 	}
-	newnode = new BSTreeNode(key,item,nullptr,nullptr); // memory for node 
+	newnode = new BSTreeNode(key,item,nullptr,nullptr); // memory for node
 	if (parent == nullptr) { // insert node as root
 		root = newnode;
 	}
@@ -70,29 +69,6 @@ void BSTree::Insert(int key,Person item) {
 		parent->right = newnode;
 		NumComp++;
 	}
-}
-
-//-----------------------------------------------------------------------------------
-
-Person BSTree::SelectionBST(int klowest) {
-	Person kperson;
-	if (this->root) {
-		BSTreeNode* curr = this->root;
-		while (curr) {
-			if ((curr->lcounter + 1) == klowest) {
-				kperson = curr->data;
-				break;
-			}
-			else if (curr->lcounter < klowest) {
-				klowest = klowest - (curr->lcounter + 1);
-				curr = curr->right;
-			}
-			else {
-				curr = curr->left;
-			}
-		}
-	}
-	return kperson;
 }
 
 //-----------------------------------------------------------------------------------
@@ -125,7 +101,7 @@ void BSTree::Delete(int id) {
 		if (parent->left->key == v->key) {
 			parent->left = nullptr;
 		}
-		else {//(parent->right->key == v->key) 
+		else {//(parent->right->key == v->key)
 			parent->right = nullptr;
 		}
 		delete v;
@@ -135,7 +111,7 @@ void BSTree::Delete(int id) {
 		if (parent->left->key == v->key) {
 			parent->left = v->left;
 		}
-		else {//(parent->right->key == v->key) 
+		else {//(parent->right->key == v->key)
 			parent->right = v->left;
 		}
 		delete v;
@@ -144,7 +120,7 @@ void BSTree::Delete(int id) {
 		if (parent->left->key == v->key) {
 			parent->left = v->right;
 		}
-		else {//(parent->right->key == v->key) 
+		else {//(parent->right->key == v->key)
 			parent->right = v->right;
 		}
 		delete v;
@@ -218,4 +194,24 @@ void BSTree::SwapClass(BSTreeNode& p1, BSTreeNode& p2) {
 	temp = p1;
 	p1 = p2;
 	p2 = temp;
+}
+
+//-----------------------------------------------------------------------------------
+
+void BSTree::printLowerThanK(int i_K) {
+	printLowerThanKRec(this->root, i_K);
+}
+
+void BSTree::printLowerThanKRec(BSTreeNode* i_Node,int i_K) {
+	if ((i_Node->left == nullptr && i_Node->right == nullptr) || (i_Node->key >= i_K)) {
+		this->NumComp++;
+	}
+	else {
+		if (i_Node->left != nullptr) {
+			printLowerThanK(i_Node->left, i_K);
+		}
+		if (i_Node->right != nullptr) {
+			printLowerThanK(i_Node->right, i_K);
+		}
+	}
 }

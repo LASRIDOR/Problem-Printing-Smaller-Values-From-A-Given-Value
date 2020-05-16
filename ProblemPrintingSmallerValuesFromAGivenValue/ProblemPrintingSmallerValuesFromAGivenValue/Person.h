@@ -9,20 +9,16 @@ using namespace std;
 class Person {
 private:
 	int id;
-	char* name;
+	string name;
 public:
-	Person();
-	Person(int id,char* name);
-	Person(const Person& other);
-	Person(Person&& other);
-	~Person();
-	const Person& operator=(const Person& other);
+	Person() = default;
+	Person(int id, string name);
 
 	void SetId(int id);
-	void SetName(char* name);
+	void SetName(string name);
 
 	int GetId();
-	char* GetName();
+	string GetName();
 	void PrintPerson();
 };
 

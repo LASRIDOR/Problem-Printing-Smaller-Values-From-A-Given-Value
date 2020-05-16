@@ -23,7 +23,7 @@ public:
 	int GetNumCopm();
 	void SwapClass(BSTreeNode& p1, BSTreeNode& p2);
 	void printLowerThanK(int i_K);
-	void printLowerThanK(BSTreeNode* i_Node,int i_K);
+	void printLowerThanKRec(BSTreeNode* i_Node,int i_K);
 };
 
 #endif // !_BSTREE_H

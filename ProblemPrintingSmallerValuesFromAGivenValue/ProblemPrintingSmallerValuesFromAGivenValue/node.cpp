@@ -1,14 +1,20 @@
 #include "Node.h"
 
-Node::Node(Computer computer, Node* nextnode) : computer(computer){
+Node::Node(Person person, Node* nextnode) : person(person){
     this->next = nextnode;
 }
 
-Computer Node::getComputer() const {
-    return this->computer;
+ostream& operator<<(ostream& os, const Node& node) {
+    os << node.person << node.next << endl;
+    return os;
 }
-int Node::getComputerID() {
-    return this->computer.getID();
+
+Person Node::getPerson() const {
+    return this->person;
+}
+
+int Node::getPersonKey() {
+    return this->person.GetKey();
 }
 
 Node *Node::DeleteAfter() {
@@ -20,10 +26,17 @@ Node *Node::DeleteAfter() {
     return temp;
 }
 
+void Node::insertAfter(Node* newNode) {
+    newNode->next = this->next;
+    next = newNode;
+}
+
 void Node::printNode() {
-    cout << this->computer.getID() << "->";
-    if(this->next != nullptr)
+    this->person.PrintPerson();
+    if (this->next != nullptr) {
+        cout << endl;
         this->next->printNode();
+    }
 }
 
 Node *Node::getNext() const {

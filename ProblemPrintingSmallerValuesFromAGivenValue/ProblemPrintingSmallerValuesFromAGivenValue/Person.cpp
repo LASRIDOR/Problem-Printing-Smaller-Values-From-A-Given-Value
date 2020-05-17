@@ -1,13 +1,22 @@
 #include "Person.h"
 
 //----------------------------------------------------------------------------------------------
-Person::Person(int id, string name) {
-	SetId(id);
+Person::Person(int key, string name) {
+	SetKey(key);
 	SetName(name);
 }
 //----------------------------------------------------------------------------------------------
-void Person::SetId(int id) {
-	this->id = id;
+bool Person::operator==(const Person& other) {
+	return this->key == other.key && this->name == other.name;
+}
+//----------------------------------------------------------------------------------------------
+ostream& operator<<(ostream& os, const Person& person) {
+	os << person.name << " " << person.key << endl;
+	return os;
+}
+//----------------------------------------------------------------------------------------------
+void Person::SetKey(int key) {
+	this->key = key;
 }
 //----------------------------------------------------------------------------------------------
 
@@ -15,8 +24,8 @@ void Person::SetName(string name) {
 	this->name = name;
 }
 //----------------------------------------------------------------------------------------------
-int Person::GetId() {
-	return this->id;
+int Person::GetKey() {
+	return this->key;
 }
 //----------------------------------------------------------------------------------------------
 string Person::GetName() {
@@ -24,6 +33,6 @@ string Person::GetName() {
 }
 //----------------------------------------------------------------------------------------------
 void Person::PrintPerson() {
-	cout <<"Person :"<< endl << "Name:"<< this->name<< endl << "Id:"<< this->id << ' ' << endl;
+	cout << this->name<< " " << this->key << endl;
 }
 //end of cpp item

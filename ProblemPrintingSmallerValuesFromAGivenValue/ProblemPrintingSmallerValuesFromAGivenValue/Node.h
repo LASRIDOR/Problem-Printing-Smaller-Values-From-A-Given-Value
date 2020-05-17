@@ -13,11 +13,13 @@ class Node {
     friend class SortingList;
 public:
     Node(Person person, Node* nextnode);
+    friend ostream& operator<<(ostream& os, const Node& node);
 
     Person getPerson() const;
-    Node *getNext() const;
+    int getPersonKey();
+    Node* getNext() const;
     Node* DeleteAfter();
-    void insertAfter();
+    void insertAfter(Node* newNode);
     void printNode();
 
 private:

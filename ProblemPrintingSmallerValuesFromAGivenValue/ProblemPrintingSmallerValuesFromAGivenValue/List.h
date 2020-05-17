@@ -7,14 +7,17 @@
 
 class SortingList {
 private:
+    int NumComp;
     Node* head;
     Node* tail;
 public:
-    void addToTail(Person person);
+    void MakeEmptyList();
+    void addSortedToList(Person person);
     void deleteNode(Person personToDelete);
     bool isEmpty()   const;
     void printList() const;
     Node *getHead()  const;
+    int getNumComp() const;
     Node *find(Person personToFind);
 
 public:
@@ -25,7 +28,8 @@ public:
 
     const SortingList& operator=(const SortingList& other);
     friend ostream &operator<<(ostream &os, const SortingList&list);
-    void MakeEmptyList();
+private:
+    void addToTail(Person person);
 };
 
 

@@ -2,6 +2,7 @@
 #include "List.h"
 
 SortingList::SortingList() {
+    this->NumComp = 0;
     MakeEmptyList();
 }
 
@@ -13,10 +14,19 @@ SortingList::SortingList(const SortingList& other) {
     head = tail = nullptr;
     Node* itemToCopyFromList = other.head;
     while(itemToCopyFromList) {
-        Node* CopiedNode = new Node(*itemToCopyFromList);
-        CopiedNode->next = nullptr;
-        addToTail(CopiedNode);
+        addToTail(itemToCopyFromList->person);
         itemToCopyFromList = itemToCopyFromList->next;
+    }
+}
+
+void SortingList::addToTail(Person person) {
+    Node* newNode = new Node(person, nullptr);
+    if (isEmpty()) {
+        head = tail = newNode;
+    }
+    else {
+        tail->next = newNode;
+        tail = newNode;
     }
 }
 
@@ -42,9 +52,7 @@ const SortingList& SortingList::operator=(const SortingList& other) {
     if (this != &other) {
         Node* itemInListOther = other.head;
         while (itemInListOther) {
-            Node* copyOfItemInListOther = new Node(*itemInListOther);
-            copyOfItemInListOther->next = nullptr;
-            addToTail(copyOfItemInListOther);
+            addToTail(itemInListOther->person);
             itemInListOther = itemInListOther->next;
         }
     }
@@ -61,13 +69,29 @@ bool SortingList::isEmpty() const {
  * Adds a new computer to the end of the list. Creates a node from the computer. Overloads the other addToTail.
  * @param computer
  */
-void SortingList::addToTail(Person person) {
+void SortingList::addSortedToList(Person person) {
     Node* newNode = new Node(person, nullptr);
+    Node* currInList = this->head;
+    Node* placeToInsertAfter = nullptr; // functioning as prev in the while
     if (isEmpty()) {
         head = tail = newNode;
-    } else {
-        tail->next = newNode;
-        tail = newNode;
+    }
+    else {
+        while (currInList != nullptr) {
+            if (currInList->getPersonKey() >= person.GetKey()) {
+                this->NumComp++;
+                break;
+            }
+            placeToInsertAfter = currInList;
+            currInList = currInList->next;
+        }
+        if (currInList == nullptr) { // curr is tail of list
+            tail->next = newNode;
+            tail = newNode;
+        }
+        else {
+            placeToInsertAfter->insertAfter(placeToInsertAfter);
+        }
     }
 }
 
@@ -77,14 +101,14 @@ void SortingList::deleteNode(Person personToDelete) {
         exit(1);
     }
     Node* temp = head;
-    if (temp->getPerson == personToDelete) {
+    if (temp->getPerson() == personToDelete) {
         head = temp->next;
         delete[] temp;
     }
     else {
         while (temp != nullptr)
         {
-            if (temp->next->getPerson == personToDelete) {
+            if (temp->next->getPerson() == personToDelete) {
                 temp->DeleteAfter();
             }
         }
@@ -100,7 +124,7 @@ void SortingList::deleteNode(Person personToDelete) {
 Node* SortingList::find(Person personToFind) {
     Node *NodeInList = head;
     while (NodeInList) {
-        if(NodeInList->getPerson == personToFind) {
+        if(NodeInList->person == personToFind) {
             return NodeInList;
         }
         NodeInList = NodeInList->next;
@@ -118,11 +142,11 @@ Node * SortingList::getHead() const {
     return head;
 }
 
+int SortingList::getNumComp() const {
+    return this->NumComp;
+}
+
 ostream &operator<<(ostream &os, const SortingList&list) {
-    Node *currentNode = list.head;
-    while (currentNode) {
-        os << currentNode->printNode << "->";
-        currentNode = currentNode->getNext();
-    }
+    os << list.head << endl;
     return os;
 }

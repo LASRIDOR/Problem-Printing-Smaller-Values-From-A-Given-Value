@@ -32,7 +32,7 @@ int Partition(Person* arr, int left, int right, int* NumComp) {
 	pivot = right;
 	for (i = left; i < right; i++) {
 		// finding index of pivot.
-		if (arr[i].GetId() < arr[pivot].GetId()) {
+		if (arr[i].GetKey() < arr[pivot].GetKey()) {
 			SwapClass(arr[i], arr[index]);
 			(*NumComp)++;
 			index++;
@@ -90,29 +90,17 @@ void SwapClass1(Person& p1, Person& p2) {
 	std::swap(p1,p2);
 }
 
-//Heap Selection ---------------------------------------------------------------------------------------------
-
-Person selectHeap(Person* arr,int n, int k, int* NumComp) {
-	Heap kLowest(arr,n);
-	Person kPerson;
-	kPerson =kLowest.SelectionHeap(k);
-	*NumComp = kLowest.GetNumCopm();
-	return kPerson;
-}
-
 // -----------------------------------------------------------------------------------------------------------
 
 //Binary Tree Selection --------------------------------------------------------------------------------------
 
-Person BST(Person* arr,int n, int k, int* NumComp) {
+int BSTPrint(Person* arr, int n, int k) {
 	BSTree tree;
-	for (int i = 0; i < n;i++) {
-		tree.Insert(arr[i].GetId(),arr[i]);
+	for (int i = 0; i < n; i++) {
+		tree.Insert(arr[i].GetKey(), arr[i]);
 	}
-	Person klowest;
-	klowest = tree.SelectionBST(k);
-	*NumComp = tree.GetNumCopm();
-	return klowest;
+	tree.printLowerThanK(k);
+	return tree.GetNumCopm();
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -126,19 +114,19 @@ void cleanbuffer() { // clean buffer for get function
 
 // -----------------------------------------------------------------------------------------------------------
 
-Person* MakeArrFromFile(char* filename,int* k,int* size) {
+Person* MakeArrFromFile(string filename,int* k,int* size) {
 	Person* arr;
 	ifstream file;
 	int temp_id;
-	char temp_name[80];
+	string temp_name;
 	file.open(filename);
 	file >> *size;
 	arr = new Person[*size];
 	for (int i = 0; i < *size; i++) {
 		file >> temp_id;
 		file.seekg(1,ios::cur); // skip space
-		file.getline(temp_name, 80);
-		arr[i].SetId(temp_id);
+		file >> temp_name;
+		arr[i].SetKey(temp_id);
 		arr[i].SetName(temp_name);
 	}
 	file >> *k;
@@ -152,15 +140,15 @@ Person* MakeArrFromFile(char* filename,int* k,int* size) {
 Person* MakeArrofPersons(int* k, int* size) {
 	Person* arr;
 	int temp_id;
-	char temp_name[128];
+	string temp_name;
 	cin >> *size;
 
 	arr = new Person[*size];
 	for (int i = 0; i < *size; i++) {
 		cin >> temp_id;
 		cin.ignore(1, ' ');
-		cin.getline(temp_name, 80);
-		arr[i].SetId(temp_id);
+		cin >> temp_name;
+		arr[i].SetKey(temp_id);
 		arr[i].SetName(temp_name);
 	}
 	cin >> *k;
@@ -173,7 +161,7 @@ Person* MakeArrofPersons(int* k, int* size) {
 void CheckValidInput(Person* arr, int size) {
 	for (int i = 0; i < size;i++) {
 		for (int j = i+1; j < size;j++) {
-			if (arr[i].GetId() == arr[j].GetId()) {
+			if (arr[i].GetKey() == arr[j].GetKey()) {
 				cout << "invalid input" << endl;
 				exit(1);
 			}
@@ -191,22 +179,15 @@ void CopyPersons(Person* destination, Person* source,int size) {
 
 // -----------------------------------------------------------------------------------------------------------
 
-int BSTPrint(Person* arr, int n, int k) {
-	BSTree tree;
-	for (int i = 0; i < n; i++) {
-		tree.Insert(arr[i].GetId(), arr[i]);
-	}
-	tree.printLowerThanK(k);
-	return tree.GetNumCopm();
-}
-
-// -----------------------------------------------------------------------------------------------------------
-
 int NaivePrint(Person* arr, int n, int k) {
-	List kLowest;
+	SortingList kLowest;
 	for (int i = 0; i < n; i++) {
-
+		if (arr[i].GetKey() < k) {
+			kLowest.addSortedToList(arr[i]);
+		}
 	}
+	cout << kLowest;
+	return kLowest.getNumComp();
 }
 
 // -----------------------------------------------------------------------------------------------------------

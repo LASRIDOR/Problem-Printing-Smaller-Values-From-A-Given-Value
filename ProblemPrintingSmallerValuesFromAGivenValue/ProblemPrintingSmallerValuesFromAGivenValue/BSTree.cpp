@@ -208,10 +208,16 @@ void BSTree::printLowerThanKRec(BSTreeNode* i_Node,int i_K) {
 	}
 	else {
 		if (i_Node->left != nullptr) {
-			printLowerThanK(i_Node->left, i_K);
+			if (i_Node->key < i_K) {
+				i_Node->data.PrintPerson();
+				printLowerThanKRec(i_Node->left, i_K);
+			}
 		}
 		if (i_Node->right != nullptr) {
-			printLowerThanK(i_Node->right, i_K);
+			if (i_Node->key < i_K) {
+				i_Node->data.PrintPerson();
+				printLowerThanKRec(i_Node->right, i_K);
+			}
 		}
 	}
 }

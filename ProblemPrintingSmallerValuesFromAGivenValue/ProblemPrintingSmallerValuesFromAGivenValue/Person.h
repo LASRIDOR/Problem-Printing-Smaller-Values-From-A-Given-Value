@@ -8,18 +8,21 @@ using namespace std;
 
 class Person {
 private:
-	int id;
+	int key;
 	string name;
 public:
 	Person() = default;
-	Person(int id, string name);
+	Person(int key, string name);
+	bool operator==(const Person& other);
+	friend ostream& operator<<(ostream& os, const Person& person);
 
-	void SetId(int id);
+	void SetKey(int key);
 	void SetName(string name);
 
-	int GetId();
+	int GetKey();
 	string GetName();
 	void PrintPerson();
+
 };
 
 

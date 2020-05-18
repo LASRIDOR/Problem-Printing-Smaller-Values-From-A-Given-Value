@@ -199,25 +199,7 @@ void BSTree::SwapClass(BSTreeNode& p1, BSTreeNode& p2) {
 //-----------------------------------------------------------------------------------
 
 void BSTree::printLowerThanK(int i_K) {
-	printLowerThanKRec(this->root, i_K);
-}
-
-void BSTree::printLowerThanKRec(BSTreeNode* i_Node,int i_K) {
-	if ((i_Node->left == nullptr && i_Node->right == nullptr) || (i_Node->key >= i_K)) {
-		this->NumComp++;
-	}
-	else {
-		if (i_Node->left != nullptr) {
-			if (i_Node->key < i_K) {
-				i_Node->data.PrintPerson();
-				printLowerThanKRec(i_Node->left, i_K);
-			}
-		}
-		if (i_Node->right != nullptr) {
-			if (i_Node->key < i_K) {
-				i_Node->data.PrintPerson();
-				printLowerThanKRec(i_Node->right, i_K);
-			}
-		}
-	}
+	int recNumComp = 0;
+	this->root->PrintLowerThanKinorder(i_K,&recNumComp);
+	this->NumComp = recNumComp + this->NumComp;
 }

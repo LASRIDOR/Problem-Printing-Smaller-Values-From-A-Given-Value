@@ -33,6 +33,6 @@ string Person::GetName() {
 }
 //----------------------------------------------------------------------------------------------
 void Person::PrintPerson() {
-	cout << this->name<< " " << this->key << endl;
+	cout << this->key << " " << this->name << endl;
 }
 //end of cpp item

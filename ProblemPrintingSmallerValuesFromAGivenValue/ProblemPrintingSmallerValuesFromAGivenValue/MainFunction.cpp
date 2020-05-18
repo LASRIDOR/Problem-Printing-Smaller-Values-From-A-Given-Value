@@ -1,25 +1,27 @@
 #include "MainHeader.h"
 
+// QuickSort ---------------------------------------------------------------------------------------------
+int PrintBySort(Person* arr, int n, int k) {
+	int NumComp = 0;
 
-// Rand Selection ---------------------------------------------------------------------------------------------
-Person RandSelection(Person* arr,int n, int k, int* NumComp) { // return k'th element in A
-	return Select(arr, 0,n-1,k,NumComp);
+	QuickSort(arr, 0, n-1, &NumComp);
+
+	for (int i = 0; i < k-1; i++) {
+		arr[i].PrintPerson();
+	}
+
+	return NumComp;
 }
 
-Person Select(Person* arr, int left, int right,int k, int* NumComp) {// return k'th element in arr
-	int pivot; // location of pivot
-	int leftPart; // size of part left yo pivot (including pivot)
+// -----------------------------------------------------------------------------------------------------------
 
-	pivot = RandomPivotPartition(arr,left,right,NumComp);
-	leftPart = pivot - left +1;
-	if (k == leftPart) {
-		return arr[pivot];
-	}
-	if (k < leftPart) {
-		return Select(arr,left,pivot-1,k, NumComp);
-	}
-	else {
-		return Select(arr, pivot + 1, right, k - leftPart, NumComp);
+void QuickSort(Person* arr, int left, int right,int* NumComp) {
+	int pivot;
+
+	if (left < right) {
+		pivot = Partition(arr, left,right, NumComp);
+		QuickSort(arr,left,pivot-1, NumComp);
+		QuickSort(arr, pivot+1, right, NumComp);
 	}
 }
 
@@ -34,22 +36,14 @@ int Partition(Person* arr, int left, int right, int* NumComp) {
 		// finding index of pivot.
 		if (arr[i].GetKey() < arr[pivot].GetKey()) {
 			SwapClass(arr[i], arr[index]);
-			(*NumComp)++;
 			index++;
 		}
+		(*NumComp)++;
 	}
 	SwapClass(arr[pivot], arr[index]);
+
 	return index;
 }
-int RandomPivotPartition(Person* arr, int left, int right, int* NumComp) {
-	// Random selection of pivot.
-	int winning_num, n, temp;
-	n = rand();
-	winning_num = left + n % (right - left + 1); // Randomizing the pivot value from sub-array.
-	SwapClass(arr[right], arr[winning_num]);
-	return Partition(arr, left, right,NumComp);
-}
-
 /*
 int Partition(Person* arr,int left,int right, int* NumComp) {
 	int i = left + 1, j = right;
@@ -185,6 +179,7 @@ int NaivePrint(Person* arr, int n, int k) {
 		if (arr[i].GetKey() < k) {
 			kLowest.addSortedToList(arr[i]);
 		}
+		kLowest.OneCompare();
 	}
 	cout << kLowest;
 	return kLowest.getNumComp();

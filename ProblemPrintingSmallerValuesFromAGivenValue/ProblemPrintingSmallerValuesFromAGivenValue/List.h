@@ -19,6 +19,7 @@ public:
     Node *getHead()  const;
     int getNumComp() const;
     Node *find(Person personToFind);
+    void OneCompare();
 
 public:
     SortingList();

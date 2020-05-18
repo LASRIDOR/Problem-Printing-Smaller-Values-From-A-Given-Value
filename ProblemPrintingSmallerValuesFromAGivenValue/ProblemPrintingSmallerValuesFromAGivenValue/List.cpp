@@ -78,19 +78,24 @@ void SortingList::addSortedToList(Person person) {
     }
     else {
         while (currInList != nullptr) {
+            this->NumComp++;
             if (currInList->getPersonKey() >= person.GetKey()) {
-                this->NumComp++;
                 break;
             }
             placeToInsertAfter = currInList;
             currInList = currInList->next;
         }
-        if (currInList == nullptr) { // curr is tail of list
+        if (placeToInsertAfter == nullptr) {
+            Node* temp = head;
+            this->head = newNode;
+            newNode->next = temp;
+        }
+        else if (placeToInsertAfter == nullptr) { // curr is tail of list
             tail->next = newNode;
             tail = newNode;
         }
         else {
-            placeToInsertAfter->insertAfter(placeToInsertAfter);
+            placeToInsertAfter->insertAfter(newNode);
         }
     }
 }
@@ -147,6 +152,10 @@ int SortingList::getNumComp() const {
 }
 
 ostream &operator<<(ostream &os, const SortingList&list) {
-    os << list.head << endl;
+    os << *list.head ;
     return os;
+}
+
+void SortingList::OneCompare() {
+    this->NumComp++;
 }

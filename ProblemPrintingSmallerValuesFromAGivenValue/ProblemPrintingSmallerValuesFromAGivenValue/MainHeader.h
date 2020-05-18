@@ -23,12 +23,11 @@ Person* MakeArrFromFile(char* filename,int* k,int* size);
 void CopyPersons(Person* destination,Person* source,int size);
 void CheckValidInput(Person* arr,int size);
 
-// Rand Selection
-// Runtime Complications: Θ(n)
+// QuickSort
+// Runtime Complications: Average :Θ(nlogn) Worst :Θ(n^2)
 
-Person RandSelection(Person* arr, int n, int k, int* NumComp);
-Person Select(Person* arr, int left, int right, int k, int* NumComp);
-int RandomPivotPartition(Person* arr, int left, int right, int* NumComp);
+int PrintBySort(Person* arr, int n, int k);
+void QuickSort(Person* arr, int left, int right, int* NumComp);
 int Partition(Person* arr, int left, int right, int* NumComp);
 
 //int Partition(Person* arr, int left, int right, int* NumComp);

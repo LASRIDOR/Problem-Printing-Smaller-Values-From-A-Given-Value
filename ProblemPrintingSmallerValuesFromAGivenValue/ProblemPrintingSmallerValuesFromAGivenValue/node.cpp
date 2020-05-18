@@ -5,7 +5,10 @@ Node::Node(Person person, Node* nextnode) : person(person){
 }
 
 ostream& operator<<(ostream& os, const Node& node) {
-    os << node.person << node.next << endl;
+    os << node.person;
+    if (node.next != nullptr) {
+        os << *node.next;
+    }
     return os;
 }
 

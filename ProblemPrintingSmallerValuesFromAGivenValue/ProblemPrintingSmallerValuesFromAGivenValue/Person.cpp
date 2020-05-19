@@ -11,7 +11,7 @@ bool Person::operator==(const Person& other) {
 }
 //----------------------------------------------------------------------------------------------
 ostream& operator<<(ostream& os, const Person& person) {
-	os << person.name << " " << person.key << endl;
+	os << person.key << " " << person.name << endl;
 	return os;
 }
 //----------------------------------------------------------------------------------------------

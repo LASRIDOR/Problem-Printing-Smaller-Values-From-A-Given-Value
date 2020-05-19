@@ -34,7 +34,7 @@ BSTreeNode* BSTree::Find(int key) {
 
 //-----------------------------------------------------------------------------------
 
-void BSTree::Insert(int key,Person item) {
+void BSTree::Insert(int keyOfPersonItem,Person item) { // key of person
 	// already checked in the main for duplicate id
 	/*
 	if (Find(key) != nullptr) {
@@ -48,20 +48,19 @@ void BSTree::Insert(int key,Person item) {
 
 	while (temp != nullptr) { // find parent of node
 		parent = temp;
-		if (key < temp->key) {
+		if (keyOfPersonItem < temp->key) {
 			temp = temp->left;
-			NumComp++;
 		}
 		else {
 			temp = temp->right;
-			NumComp++;
 		}
+		NumComp++;
 	}
-	newnode = new BSTreeNode(key,item,nullptr,nullptr); // memory for node
+	newnode = new BSTreeNode(keyOfPersonItem,item,nullptr,nullptr); // memory for node
 	if (parent == nullptr) { // insert node as root
 		root = newnode;
 	}
-	else if (key < parent->key) { // insert node as left child
+	else if (keyOfPersonItem < parent->key) { // insert node as left child
 		parent->left = newnode;
 		NumComp++;
 	}
@@ -85,15 +84,12 @@ void BSTree::Delete(int id) {
 	while (temp != nullptr) { // find parent of node
 		if (temp->left->key == v->key || temp->right->key == v->key) {
 			parent = temp;
-			NumComp++;
 		}
 		if (id < temp->key) {
 			temp = temp->left;
-			NumComp++;
 		}
 		else {
 			temp = temp->right;
-			NumComp++;
 		}
 	}
 	// v has no children
@@ -199,7 +195,5 @@ void BSTree::SwapClass(BSTreeNode& p1, BSTreeNode& p2) {
 //-----------------------------------------------------------------------------------
 
 void BSTree::printLowerThanK(int i_K) {
-	int recNumComp = 0;
-	this->root->PrintLowerThanKinorder(i_K,&recNumComp);
-	this->NumComp = recNumComp + this->NumComp;
+	this->root->PrintLowerThanKinorder(i_K);
 }

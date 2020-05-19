@@ -6,8 +6,10 @@ int PrintBySort(Person* arr, int n, int k) {
 
 	QuickSort(arr, 0, n-1, &NumComp);
 
-	for (int i = 0; i < k-1; i++) {
-		arr[i].PrintPerson();
+	int index = 0;
+	while (arr[index].GetKey() < k && index < n) {
+		arr[index].PrintPerson();
+		index++;
 	}
 
 	return NumComp;
@@ -36,12 +38,11 @@ int Partition(Person* arr, int left, int right, int* NumComp) {
 		// finding index of pivot.
 		if (arr[i].GetKey() < arr[pivot].GetKey()) {
 			SwapClass(arr[i], arr[index]);
+			(*NumComp)++;
 			index++;
 		}
-		(*NumComp)++;
 	}
 	SwapClass(arr[pivot], arr[index]);
-
 	return index;
 }
 /*
@@ -112,16 +113,20 @@ Person* MakeArrFromFile(string filename,int* k,int* size) {
 	Person* arr;
 	ifstream file;
 	int temp_id;
-	string temp_name;
+	string temp_fname;
+	string temp_lname;
 	file.open(filename);
 	file >> *size;
 	arr = new Person[*size];
 	for (int i = 0; i < *size; i++) {
+		string full_name;
 		file >> temp_id;
 		file.seekg(1,ios::cur); // skip space
-		file >> temp_name;
+		cin >> temp_fname;
+		cin >> temp_lname;
+		full_name.append(temp_fname + ' ' + temp_lname);
 		arr[i].SetKey(temp_id);
-		arr[i].SetName(temp_name);
+		arr[i].SetName(full_name);
 	}
 	file >> *k;
 	file.close();
@@ -134,16 +139,20 @@ Person* MakeArrFromFile(string filename,int* k,int* size) {
 Person* MakeArrofPersons(int* k, int* size) {
 	Person* arr;
 	int temp_id;
-	string temp_name;
+	string temp_fname;
+	string temp_lname;
 	cin >> *size;
 
 	arr = new Person[*size];
 	for (int i = 0; i < *size; i++) {
+		string full_name;
 		cin >> temp_id;
-		cin.ignore(1, ' ');
-		cin >> temp_name;
+		cin.ignore(1, ' '); // for space
+		cin >> temp_fname;
+		cin >> temp_lname;
+		full_name.append(temp_fname+' '+ temp_lname);
 		arr[i].SetKey(temp_id);
-		arr[i].SetName(temp_name);
+		arr[i].SetName(full_name);
 	}
 	cin >> *k;
 	CheckValidInput(arr, *size);
@@ -179,7 +188,6 @@ int NaivePrint(Person* arr, int n, int k) {
 		if (arr[i].GetKey() < k) {
 			kLowest.addSortedToList(arr[i]);
 		}
-		kLowest.OneCompare();
 	}
 	cout << kLowest;
 	return kLowest.getNumComp();

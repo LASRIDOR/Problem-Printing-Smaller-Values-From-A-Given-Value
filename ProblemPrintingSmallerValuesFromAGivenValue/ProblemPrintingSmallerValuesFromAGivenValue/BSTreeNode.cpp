@@ -87,19 +87,21 @@ void BSTreeNode::postorder() {
 
 //-----------------------------------------------------------------------------------
 
-void BSTreeNode::PrintLowerThanKinorder(int k,int *NumComp) {
+void BSTreeNode::PrintLowerThanKinorder(int k) {
     /* first recur on left child */
     if (left != nullptr) {
-        left->PrintLowerThanKinorder(k,NumComp);
+        left->PrintLowerThanKinorder(k);
     }
     /* then print the data of node */
     if (this->key < k) {
         this->data.PrintPerson();
     }
-    *(NumComp)++;
+    else { // (this->key >= k)
+        return;
+    }
 
     /* now recur on right child */
     if (right != nullptr) {
-        right->PrintLowerThanKinorder(k,NumComp);
+        right->PrintLowerThanKinorder(k);
     }
 }

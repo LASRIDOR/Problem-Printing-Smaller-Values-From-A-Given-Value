@@ -18,7 +18,7 @@ public:
 	~BSTreeNode();
 	int GetKey();
 	void inorder();
-	void PrintLowerThanKinorder(int k, int* NumComp);
+	void PrintLowerThanKinorder(int k);
 	void preorder();
 	void postorder();
 };

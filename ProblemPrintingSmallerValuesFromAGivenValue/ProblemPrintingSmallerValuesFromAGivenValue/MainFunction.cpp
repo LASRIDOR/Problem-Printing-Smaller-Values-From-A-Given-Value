@@ -1,6 +1,7 @@
 #include "MainHeader.h"
 
 // QuickSort ---------------------------------------------------------------------------------------------
+// get array of person and change them directly to be sorted according to their key
 int PrintBySort(Person* arr, int n, int k) {
 	int NumComp = 0;
 
@@ -45,33 +46,6 @@ int Partition(Person* arr, int left, int right, int* NumComp) {
 	SwapClass(arr[pivot], arr[index]);
 	return index;
 }
-/*
-int Partition(Person* arr,int left,int right, int* NumComp) {
-	int i = left + 1, j = right;
-	int winning_num;
-	srand((unsigned)time(NULL));
-	Sleep(7 * left); // in program like this rand time will always give the same value
-	winning_num = ((rand() % (right - left+ 1)) + left);
-	if (winning_num != left) {
-		SwapClass(arr[winning_num], arr[left]);
-	}
-	while (i < j) {
-		while (arr[i].GetId() <= arr[left].GetId()) {
-			i++;
-			(*NumComp)++;
-		}
-		while (arr[j].GetId() > arr[left].GetId()) {
-			j--;
-			(*NumComp)++;
-		}
-		if (i < j) {
-			SwapClass(arr[i], arr[j]);
-		}
-	}//big while
-	SwapClass(arr[j],arr[left]);
-	return j;
-}
-*/
 
 // -----------------------------------------------------------------------------------------------------------
 
@@ -88,7 +62,8 @@ void SwapClass1(Person& p1, Person& p2) {
 // -----------------------------------------------------------------------------------------------------------
 
 //Binary Tree Selection --------------------------------------------------------------------------------------
-
+// this func makes a brand new tree every procedure and makes a search binary tree
+// and then prints the only person that their key is lowest then k
 int BSTPrint(Person* arr, int n, int k) {
 	BSTree tree;
 	for (int i = 0; i < n; i++) {
@@ -108,7 +83,7 @@ void cleanbuffer() { // clean buffer for get function
 }
 
 // -----------------------------------------------------------------------------------------------------------
-
+// this func makes arr of person from file
 Person* MakeArrFromFile(string filename,int* k,int* size) {
 	Person* arr;
 	ifstream file;
@@ -135,7 +110,7 @@ Person* MakeArrFromFile(string filename,int* k,int* size) {
 }
 
 // -----------------------------------------------------------------------------------------------------------
-
+// this func makes arr of person from the console
 Person* MakeArrofPersons(int* k, int* size) {
 	Person* arr;
 	int temp_id;
@@ -160,7 +135,7 @@ Person* MakeArrofPersons(int* k, int* size) {
 }
 
 // -----------------------------------------------------------------------------------------------------------
-
+// checks if the values are valid
 void CheckValidInput(Person* arr, int size) {
 	for (int i = 0; i < size;i++) {
 		for (int j = i+1; j < size;j++) {

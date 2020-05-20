@@ -1,4 +1,4 @@
-
+/*
 #include "MainHeader.h"
 
 int main() {
@@ -57,3 +57,4 @@ int main() {
 	delete[] FindKInputs;
 }
 
+*/

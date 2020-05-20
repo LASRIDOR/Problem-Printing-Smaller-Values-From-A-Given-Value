@@ -152,7 +152,9 @@ int SortingList::getNumComp() const {
 }
 
 ostream &operator<<(ostream &os, const SortingList&list) {
-    os << *list.head ;
+    if (list.head != nullptr) {
+        os << *list.head;
+    }
     return os;
 }
 

@@ -1,4 +1,3 @@
-/*
 #include "MainHeader.h"
 
 int main() {
@@ -21,22 +20,21 @@ int main() {
 
 	//checking NaivePrint
 	NumCompNaive = NaivePrint(testNaive, size, k);
-	cout << endl << endl;
+	cout << endl ;
 	//checking BST
 	NumCompBST = BSTPrint(testBST, size, k);
-	cout << endl<< endl;
+	cout << endl;
 	//checking QuickSort
+// pay attention that the testQuickSort array of person is changing directly
 	NumCompQuickSort =  PrintBySort(testQuickSort, size, k);
-	cout << endl << endl;
+	cout << endl ;
 
-	cout << endl << "NaivePrint :" << NumCompNaive << "comparisons" << endl;
-	cout << endl << "BSTPrint:" << NumCompBST << " comparisons" << endl;
-	cout << endl << "QuickSort :" << NumCompQuickSort << "comparisons" << endl;
+	cout << "NaivePrint: " << NumCompNaive << " comparisons" << endl;
+	cout << "BSTPrint : " << NumCompBST << " comparisons" << endl;
+	cout << "QuickSort : " << NumCompQuickSort << " comparisons" << endl;
 
 	// Delete dynamic allocation
 	delete[]testBST;
 	delete[]testQuickSort;
 	delete[]testNaive;
 }
-
-*/

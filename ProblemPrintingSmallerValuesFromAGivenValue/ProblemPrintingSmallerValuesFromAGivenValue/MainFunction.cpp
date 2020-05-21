@@ -11,6 +11,7 @@ int PrintBySort(Person* arr, int n, int k) {
 	while (arr[index].GetKey() < k && index < n) {
 		arr[index].PrintPerson();
 		index++;
+		NumComp++;
 	}
 
 	return NumComp;
@@ -163,6 +164,7 @@ int NaivePrint(Person* arr, int n, int k) {
 		if (arr[i].GetKey() < k) {
 			kLowest.addSortedToList(arr[i]);
 		}
+		kLowest.OneCompare();
 	}
 	cout << kLowest;
 	return kLowest.getNumComp();

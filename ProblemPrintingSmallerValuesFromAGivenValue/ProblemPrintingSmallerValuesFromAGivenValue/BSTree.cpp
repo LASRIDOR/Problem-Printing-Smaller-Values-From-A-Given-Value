@@ -85,15 +85,18 @@ void BSTree::Delete(int id) {
 		if (temp->left->key == v->key || temp->right->key == v->key) {
 			parent = temp;
 		}
+		this->NumComp++;
 		if (id < temp->key) {
 			temp = temp->left;
 		}
 		else {
 			temp = temp->right;
 		}
+		this->NumComp++;
 	}
 	// v has no children
 	if (v->left != nullptr && v->right != nullptr) {
+		this->NumComp++;
 		if (parent->left->key == v->key) {
 			parent->left = nullptr;
 		}
@@ -104,6 +107,7 @@ void BSTree::Delete(int id) {
 	}
 	// v has only one child
 	else if (v->left != nullptr && v->right == nullptr) {
+		this->NumComp++;
 		if (parent->left->key == v->key) {
 			parent->left = v->left;
 		}
@@ -113,6 +117,7 @@ void BSTree::Delete(int id) {
 		delete v;
 	}
 	else if (v->left == nullptr && v->right != nullptr) {
+		this->NumComp++;
 		if (parent->left->key == v->key) {
 			parent->left = v->right;
 		}
@@ -195,5 +200,7 @@ void BSTree::SwapClass(BSTreeNode& p1, BSTreeNode& p2) {
 //-----------------------------------------------------------------------------------
 
 void BSTree::printLowerThanK(int i_K) {
-	this->root->PrintLowerThanKinorder(i_K);
+	int NumCompInPrintOrder = 0;
+	this->root->PrintLowerThanKinorder(i_K,&NumCompInPrintOrder);
+	this->NumComp = this->NumComp + NumCompInPrintOrder;
 }

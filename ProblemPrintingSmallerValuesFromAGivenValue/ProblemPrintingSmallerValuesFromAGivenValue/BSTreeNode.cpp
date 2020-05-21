@@ -93,7 +93,7 @@ void BSTreeNode::PrintLowerThanKinorder(int k,int* NumCompInPrintOrder) {
         left->PrintLowerThanKinorder(k,NumCompInPrintOrder);
     }
     /* then print the data of node */
-    *(NumCompInPrintOrder)++;
+    (*NumCompInPrintOrder)++;
     if (this->key < k) {
         this->data.PrintPerson();
     }

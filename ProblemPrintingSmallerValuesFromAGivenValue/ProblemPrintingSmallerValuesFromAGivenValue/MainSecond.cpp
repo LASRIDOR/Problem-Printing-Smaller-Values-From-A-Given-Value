@@ -1,3 +1,4 @@
+/*
 #include "MainHeader.h"
 
 int main() {
@@ -38,3 +39,4 @@ int main() {
 	delete[]testQuickSort;
 	delete[]testNaive;
 }
+*/

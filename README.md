@@ -18,7 +18,7 @@ Number of data printed.
 
 The main plan:
 
-Main function of the program:
+# Main function of the program:
 
 1. Read from stdin (from the keyboard, not a file) an integer,, n that denotes the number of members, and then read n pairs of numbers followed by a string, each in a row. The integer in each pair indicates the identity number of a player, and the string its name. Check that each name does consist of 2 words separated by a space (first name, space, last name.)
 You will then absorb an integer k

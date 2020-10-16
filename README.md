@@ -1,15 +1,13 @@
 # Problem of Printing Smaller Values From A GivenValue
-A program in C ++, in which the problem of printing small values from a given value described below will be solved in several ways, according to some algorithms we have learned
-In the course Data Structures, you will compare the effectiveness of the various solutions.
+A program in C ++, in which the problem of printing small values from a given value described below will be solved in several ways, according to some algorithms I have learned In the course Data Structures, you will compare the effectiveness of the various solutions.
 
 # Problem printing values smaller than a given value
-Given n members when each member contains a key and data, and another key, K must be printed
-All data with the keys small from K-sorted from small to large.
+Given n members when each member contains a key and data, and another key K
+All data should be printed with the small keys from K-sorted from small to large.
 Suppose: all the keys are different from each other.
 
 # Detailed description of the purpose of the exercise:
-The purpose of the exercise is to implement a number of solutions to the problem of printing small values from a given set, to investigate and analyze the differences between the different solutions with respect to n, r when r is
-Number of data printed.
+The purpose of the exercise is to implement a number of solutions to the problem of printing small values from a given value, to investigate and analyze the differences between the different solutions in relation to n, r where r is the number of data printed.
 
 # The solutions you need to implement are:
 1. An algorithm that goes through the array of members, and copies from it all the data with a key smaller than k, to a chained list when the entry is sorted (the list is sorted at any moment) then the list will be printed on the screen.
@@ -20,8 +18,8 @@ The main plan:
 
 # Main function of the program:
 
-1. Read from stdin (from the keyboard, not a file) an integer,, n that denotes the number of members, and then read n pairs of numbers followed by a string, each in a row. The integer in each pair indicates the identity number of a player, and the string its name. Check that each name does consist of 2 words separated by a space (first name, space, last name.)
-You will then absorb an integer k
+1. Read from stdin (from the keyboard, not a file) an integer,, n that denotes the number of members, then read n pairs of numbers followed by a string, each in a row. The integer in each pair indicates the identity number of a player, and the string its name. Check that each name does indeed consist of 2 words separated by a space (first name, space, last name.) Then you will pick up an integer, k.
+For example, the following input:
 
 For example, the following input:
 6
@@ -33,8 +31,7 @@ For example, the following input:
 606 Scottie Pippen
 318
 
-Is an input of six players, with the sort key being their ID number, and the name being their satellite data. All data with the ID number must be printed
-Their is smaller than 318 in a sorted way and therefore must be printed on the screen:
+Is an input of six players, with the sort key being their ID number, and the name being their satellite data. All data with an ID number of less than 318 must be printed in a sorted manner, so print to the screen:
 
 118 Stephen Curry
 132 Lebron James
